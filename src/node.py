@@ -6,8 +6,8 @@ from src.schema import AgentState
 from src.tools import update, save
 
 load_dotenv()
-tools = [update, save]
-model = ChatOpenAI(model="gpt-4o").bind_tools(tools)
+agent_tools = [update, save]
+model = ChatOpenAI(model="gpt-4o").bind_tools(agent_tools)
 
 document_content = ""
 
@@ -20,7 +20,6 @@ def drafter_agent_node(state: AgentState) -> AgentState:
     - Make sure to always show the current document state after modification
     
     The current document content is: {document_content}
-    
 """)
     if not state["messages"]:
         user_input = "I am ready to help you update a document. what would you like to update"
